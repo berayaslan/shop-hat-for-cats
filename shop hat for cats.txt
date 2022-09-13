@@ -1,0 +1,348 @@
+/* Gerekli kütüphaneleri tanımladım*/
+#include <iostream>
+#include<windows.h>
+
+using namespace std;
+
+/* Çıkış Ekranı adında bir sınıf yarattım */
+class cikisekrani
+{
+    /* Yapılan işlerimlerin herkese açık kullanılması için public tanımladım */
+    public:
+    /* Herhangi bir değer geriye döndürmeyeceği için sanal metod tanımladım */
+    virtual void bilgilendirme()
+{
+     /* Programın kapanma ekranında ödeme alınınca yazacak ilk çıktıyı yazdırdım */
+     cout << "\n----------------------Odemeniz basariyla alinmistir-----------------------\n";
+     /* Kullanıcıya her şeyin tane tane gözükmesi için komutların arasına 2.5 saniye bekleme komutu tanımladım */
+        Sleep(2500);
+}
+};
+/* Tercih classı oluşturdum ve aynı özelliğe ait oldukları için çıkış ekranı classından kalıtım aldım */
+class tercih:public cikisekrani
+{
+/* Yapılan işlemlerin herkese açık kullanılması için public tanımladım */
+public:
+/* Herhangi bir değer geri döndürmeyeceği için bilgilendirme metodunu override (aşırı yükleme) yaptım*/
+     void bilgilendirme() 
+{
+     /* Programın kapanma ekranında yazacak teşekkür yazısını yazdırdım  */
+     cout << "\n-------------------Bizi tercih ettiginiz icin tesekkurler!!!!!----------------------- \n";
+     /* Kullanıcıya her şeyin tane tane gözükmesi için komutların arasına 1 saniye bekleme komutu tanımladım */
+    Sleep(1000);		
+}
+};
+/*Teslim classını oluşturdum ve aynı özelliğe ait oldukları için çıkış ekranı classından kalıtım aldım */		
+class teslim:public cikisekrani
+{
+     /* Yapılan işlemlerin herkese açık kullanılması için public tanımladım */
+public:
+     /* Herhangi bir değer geri döndürmeyeceği için bilgilendirme metodunu override (aşırı yükleme) yaptım */
+    void bilgilendirme()
+{
+     /* Programın kapanma ekranında çıkacak bilgilendirme yazısını yazdırdım */
+     cout << "\n------------------Siparisiniz en kisa sure icerisinde teslim edilecektir.----------- \n";
+}
+};
+
+
+int main()
+{
+
+  /* Ürünler adında bir string dizisi oluşturdum ve mağazadaki tüm ürünleri tanımladım */
+  string urunler[25] =
+  {
+
+    "Kirmizi kalpli bandana - 60 TL", 
+    "Besiktas bere - 70 TL ",
+    "Fenerbahce bere - 70 TL ",
+    "Galatasaray bere - 70 TL  ",
+    "Limon bucket sapka - 85 TL ",
+    "Kurbaga bucket sapka - 85 TL",
+    "Aycicegi bucket sapka - 90 TL ",
+    "Kalpli bucket sapka - 95 TL ",
+    "Bulut bucket sapka - 85 TL  ",
+    "Mantar bucket sapka - 80 TL ",
+    "Inek bucket sapka - 60 TL ",
+    "Karpuz bucket sapka - 65 TL ",
+    "Papatya bucket sapka - 60 TL",
+    "Penguen bere - 85 TL  ",
+    "Gokkusagi bere - 85 TL ",
+    "Balkabagi bere - 85 TL ",
+    "Tavsan bere - 85 TL ",
+    "Siyah cadi sapkasi - 60 TL",
+    "Gri cadi sapkasi - 60 TL ",
+    "Yesil cadi sapkasi - 60 TL ",
+
+  };
+
+  /* Fiyat adında bir integer dizisi oluşturdum ve bu dizinin içersine ürünlere ait fiyatları yazdım */
+  int fiyat[25] =
+  {
+
+    60,
+    70,
+    70,
+    70,
+    85,
+    85,
+    90,
+    95,
+    85,
+    80,
+    60,
+    65,
+    60,
+    85,
+    85,
+    85,
+    85,
+    60,
+    60,
+    60,
+
+  };
+
+  /* Kullanıcıdan işlem almayacağı için string tipinde bir ödeme dizisi oluşturdum ve bu dizinin içerisine ödeme şekillerini yazdım */
+  string odeme[25] =
+  {
+
+    "Is Bankasi",
+    "Yapikredi",
+    "Ziraat Bankasi",
+    "Garanti Bankasi",
+    "Halk Bankasi",
+    "Denizbank",
+
+  };
+  
+   /* Kullanıcıdan aldığı verilere göre işlem yapacağı için integer tipinde değişkenlerimi tanımladım */
+  int siparis, adet, odemesecenegi, kargo=15,indirim=-20,ikincisiparis,ikinciadet;
+  /* Kullanıcıdan aldığı verilerle bir işlem yapılmayacağı için string tipinde değişkenlerimi tanımladım */
+  string isim, telno, postakodu, kartno, cvvno;
+  /* Kullanıcının tekrar işlem yapıp yapmayacağını alacağı karakter cevabına göre yapacağı için char tipinde bir değişken tanımladım */
+  char cevap;
+  
+  /* Mağazanın adı yazdırdım */
+  cout << "\t\t\t\t\tBERAY'IN SAPKA DUKKANI\n" << endl;
+  /* Komutların daha güzel gözükmesi için ekrana 2 saniye bekleme süresi ekledim */
+  Sleep(2000);
+  /* Kargonun ücretsiz olma bilgisini ekrana yazdırdım */
+  cout <<"\t\t\t150 TL VE UZERI ALISVERISLERINIZDE KARGO UCRETSIZ!!!!\n"<< endl;
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+  cout << "______________________________________________________________________________________________________________________\n";
+  cout <<"INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM INDIRIM"<< endl;
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+  cout << "______________________________________________________________________________________________________________________";
+  /* İndirimin kaç tl üzerinde gerçekleşeceğini ekrana yazdırdım */
+  cout <<"\n\t\t-----------200 TL VE UZERI ALISVERISLERINIZDE 20 TL INDIRIM!!!!-----------\n"<< endl;
+  /* Şapka modellerini ekrana yazdırdım */
+  cout << "Magazamizdaki tum sapka modelleri asagidaki gibidir: \n" << endl;
+  /* Komutların daha güzel gözükmesi için ekrana 1.9 saniye bekleme süresi ekledim */
+  Sleep(1900);
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+ cout << "______________________________________" << endl;
+ 
+  /* Ürünlerimin sayısı 20 adet olduğu için 20'ye kadar sayıp ekrana yazdıran bir for döngüsü oluşturdum  */
+  for (int i = 0; i < 20; i++)
+  {
+  /* Döngü başa sardıkça ürünlerin başındaki numarayı arttıran ve ürünleri sırayla ekrana yazdıran komutu oluşturdum */
+    cout << i + 1 << ". " << urunler[i] << endl;
+  }
+  
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+   cout << "______________________________________" << endl;
+   
+  /* Kullanıcının almak istediği ürünün numarası soran komutu oluşturdum  */
+  cout << "\nSiparis vermek istediginiz sapka numarasini giriniz: ";
+  /* Kullanıcının girdiği numarayı sipariş adlı değişkene atadım  */
+  cin >> siparis;
+  /* Komutların daha güzel gözükmesi için ekrana 1.5 saniye bekleme süresi ekledim */
+  Sleep(1500);
+  
+  /* Kullanıcıya seçtiği ürünü dizideki numarasına göre ekrana yazdırdım */  
+  cout << "\nSectiginiz model: " << urunler[siparis - 1] << endl;
+  /* Kullanıcıya üründen kaç adet almak istediğini sordum */
+  cout << "\nKac adet almak istediginizi giriniz: ";
+  /*Kullanıcının belirlediği adet sayısını değişkene atadım */
+  cin >> adet;
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+  cout << "_____________________________________________________________________\n";
+  /* Komutların daha güzel gözükmesi için ekrana 1.5 saniye bekleme süresi ekledim */
+  Sleep(1500);
+    
+  /* Kullanıcı 2. bir ürün almak istiyor mu diye ekrana yazdırdım */
+  cout << "\nBaska bir urun daha almak istiyor musunuz?\nCEVAP(e/h): ";
+  /* Kullanıcının verdiği cevabı oluşturduğum cevap adlı char değişkenine atadım */
+  cin >> cevap;
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */ 
+  cout << "_____________________________________________________________________\n";
+    
+  /* Eğer kullanıcının cevabı evet olursa aşağıdaki if komutu çalışacak */
+  if(cevap=='e')
+  {
+    /* Kullanıcının almak istediği 2. ürünün numarasını yazdırdım */
+    cout << "\nSiparis vermek istediginiz sapka numarasini giriniz: ";
+    /* İkinci ürünü ikinci sipariş adlı değişkene atadım */
+    cin >> ikincisiparis;
+    /* Komutların daha güzel gözükmesi için ekrana 1.5 saniye bekleme süresi ekledim */
+    Sleep(1500);
+   	
+    /* Kullanıcıya seçtiği modeli gösterdim */
+    cout << "\nSectiginiz model: " << urunler[ikincisiparis - 1] << endl; 
+    /* Kullanıcıya kaç adet almak istediğini sordum */
+    cout << "\nKac adet almak istediginizi giriniz: ";
+    /* Kullanıcının seçtiği adet sayısını değişkene aktardım */
+    cin>>ikinciadet;
+    /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+    cout << "_____________________________________________________________________\n";
+  }
+	
+  /* Kullanıcının cevabı hayır olursa aşağıdaki komut çalışacak */
+  else if (cevap=='h')
+  {
+    /* Faturaya yansımaması için ikinci sipariş ve ikinci ürünün adetini 0 olarak tanımladım */
+	ikincisiparis=0,ikinciadet=0;
+  }
+	
+  /* Teslimat detaylarını ekrana yazdırdım */
+  cout << "\n\n\t\t\tTESLIMAT DETAYLARI\n\n";
+
+  /* Faturada gözükmesi ve teslimatın düzgün olması için kullanıcının ismini aldım */
+  cout << "Isminizi giriniz: ";
+  /* Kullanıcının girdiği ismin isim değişkenine aktardım */
+  cin >> isim;
+  /* Faturada gözükmesi ve teslimatın düzgün olması için kullanıcının telefon numarasını aldım */
+  cout << "10 haneli telefon numaranizi giriniz: ";
+  /* Kullanıcının telefon numarasını tel no adlı değişkene aktardım */
+  cin >> telno;
+  /* Kullanıcının yaşadığı yere ait olan 5 haneli posta kodunu isteyen çıktıyı ekrana yazdırdım */
+  cout << "5 haneli posta kodunuzu giriniz: ";
+  /* Kullanıcının yazdığı kodu postakodu adlı değişkene aktardım */
+  cin >> postakodu;
+  /* Komutların daha güzel gözükmesi için ekrana 1.5 saniye bekleme süresi ekledim */
+  Sleep(1500);
+  
+  /* Faturaya ait bilgileri yazdırmak için faturayı ekrana yazdırdım */
+  cout << "\n\n\n-------------------------------FATURA-----------------------------------\n\n";
+  /* Kullanıcının ilk ve ikinci ve siparişine ait fiyat bilgisini toplam adlı değişkende hesapladım */
+  int toplam = (fiyat[siparis - 1] * adet)+(fiyat[ikincisiparis-1]*ikinciadet);
+  
+  /* Kullanıcının seçtiği ilk ürüne ait bilgileri ekrana yazdırdım */
+  cout << urunler[siparis - 1] << "*" << adet << "\t\t\t\t" << (fiyat[siparis - 1])*adet << "\t\t\t\t" << endl;
+  
+  /*  Kullanıcının ikinci ürüne verdiği cevap evet ise aşağıdaki komut satırı çalışacak */
+  if(cevap=='e')
+  {
+  /* İkinci ürüne ait fiyat bilgileri aşağıdaki komut satırı sayesinde ekrana yazdırdım */
+    cout << urunler[ikincisiparis - 1] << "*" << ikinciadet << "\t\t\t\t" << (fiyat[ikincisiparis - 1])*ikinciadet << "\t\t\t\t" << endl;
+  }
+  /* Eğer cevap evet değilse aşağıdaki satır çalışacak */
+  else
+  /* Cevap evet olmadığı için ikinci ürüne ait fiyat bilgisini aşağıdaki komut sayesinde ekrana yazdırdım */
+    cout<<"Ikinci urun"<< "\t\t\t\t\t\t"<< ikincisiparis << endl;
+  
+  /* Eğer kullanıcının seçtiği ürünlerin fiyatının toplamı 150 tlden az ise kargo ücreti eklenecek ve aşağıdaki satır çalışacak */  
+  if (toplam<150)
+  {
+    /* Faturadaki genel toplama kargo ücretini ekledim */
+    toplam=toplam+kargo;
+  }
+  
+  /* Eğer toplam 150 tlden fazla ise aşağıdaki satır çalışacak */
+  else if (toplam>150)
+  {
+    /* Kullanıcının aldığı ürünlerin toplamı 150 tlden fazla ise kargo ücretini 0 tl olarak hesapladım */
+    kargo=0;
+  }
+  
+  /* Faturaya kargo ücretini yazdırdım */
+  cout << "Kargo ucreti " << "\t\t\t\t\t\t" << kargo << endl;
+  
+    /* Eğer kullanıcının aldığı ürünlerin toplamı 200 tlden az veya eşit ise aşağıdaki satır çalışacak */
+  if (toplam<=200)
+  {
+    /* Eğer kullanıcı 200 tlden fazla ürün almamış ise indirimi geçersiz kılan kodu yazdım */
+    indirim=0;
+  }
+  /* Eğer 200 tlden fazla veya eşit alışveriş yapmışsa aşağıdakl kod satırı çalışacak */
+  else if (toplam>=200)
+  {
+    /* Toplam 200tlden fazla veya eşit olduğu için 20tl tutarındaki indirimi toplamdan çıkardım */
+    toplam=toplam+indirim;
+  }
+  
+  /* 200 tl ve üzerinde alışveriş yapmışsa aşağıdaki kodla beraber indirimi ekrana yazdırdım */
+  cout << "200 tl ve uzeri indirim " << "\t\t\t\t" << indirim << endl;
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+  cout << "_________________________________________________________________________\n";
+  /* Toplam ücretin hepsini ekrana yazdırdım */
+  cout << "TOPLAM" << "....................................................." << toplam << " TL\t|" << endl;
+  /* Fatura görünümü yaratmak için ekrana 5 adet şerit ekledim */
+  cout << "\t\t\t\t\t\t\t\t\t|" << endl;
+  cout << isim << "    \t\t\t\t\t\t\t\t|" << endl;
+  cout << telno << "    \t\t\t\t\t\t\t\t|" << endl;
+  cout << postakodu << "    \t\t\t\t\t\t\t\t|" << endl;
+  cout << "\t\t\t\t\t\t\t\t\t|" << endl;
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+  cout << "_________________________________________________________________________\n";
+  /* Komutların daha güzel gözükmesi için ekrana 3 saniye bekleme süresi ekledim */
+  Sleep(3000);
+  
+  /* Kullanıcının ödeme aşamasına geldiğini ekrana yazdırdım */
+  cout << "\n\n\t\t\tODEME ASAMASI\n\n";
+  /* Ekrana anlaşmalı olduğumuz bankaları yazdırdım */
+  cout << "Anlasmali oldugumuz bankalar: \n\n";
+  
+  /* 6 adet banka olduğu için 6ya kadar sayan bir for döngüsü oluşturdum */
+  for (int i = 0; i < 6; i++)
+  {
+   /* Kullanıcıya banka isimlerini gösterdim */
+    cout << i + 1 << ". " << odeme[i] << endl;
+  }
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+  cout << "_________________________________________________________________________\n";
+  /* Komutların daha güzel gözükmesi için ekrana 1.5 saniye bekleme süresi ekledim */
+  Sleep(1500);
+  
+  /* Kullanıcıya seçmek istediği banka numarasını sordum */
+  cout << "\nSecmek istediginiz banka numarasini giriniz: ";
+  /* Kullanıcının seçtiği banka numarasını ödemeseçeneği adlı değişkene aktardım */
+  cin >> odemesecenegi;
+  
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+  cout << "_________________________________________________________________________\n";
+  
+  /* Komutların daha güzel gözükmesi için ekrana 1.5 saniye bekleme süresi ekledim */
+  Sleep(1500);
+  
+  /* Kullanıcının seçtiği bankaya ait kart numarasını girmesi için ekrana yazı yazdırdım */
+  cout << "\n" << odeme[odemesecenegi - 1] << " kartinizin uzerinde yazan 16 haneli kart numarasini giriniz: " ;
+  /* Kullanıcının girdiği kart numarasını kartno adlı değişkene aktardım */
+  cin >> kartno;
+
+  /* Kullanıcıdan cvv numarasını isteyen yazıyı ekrana yazdırdım */
+  cout << "Kartinizin arkasinda yazan 3 haneli CVV numarasini giriniz: ";
+  /* Kullanıcının girdiği numarayı cvvno adlı değişkene aktardım */
+  cin >> cvvno;
+  /* Yazılanların daha güzel gözükmesi için aralarına şerit ekledim */
+  cout << "_________________________________________________________________________\n";
+  /* Komutların daha güzel gözükmesi için ekrana 1.5 saniye bekleme süresi ekledim */
+  Sleep(1500);
+  
+  /* Çıkış ekranı adlı taban sınıftan 3 elemanlı bir pointer dizisi oluşturdum */
+  cikisekrani*dizi[3];
+  /* Oluşturduğum bu dizinin her indisine türettiğim classları aktardım */
+  dizi[0]= new cikisekrani();
+  dizi[1]= new tercih();	
+  dizi[2]= new teslim();
+  
+  /* 0'dan 3'e giderek artan bir for döngüsü oluşturdum */
+  for(int i=0;i<3;i++)
+  {
+    /* Bu dizinin döngüyle beraber artan her elemanında bilgilendirme adlı metodu çağırdım */
+    dizi[i]->bilgilendirme();
+  }
+
+  return 0;
+}
